@@ -14,13 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 // sync sequelize models to the database, then turn on the server
-// app.listen(PORT, () => {
-//   console.log(`App listening on port ${PORT}!`);
-// });
-
-//TODO:
-// if sequelize SYNC is needed here...
-// CURRENTLY, SYNC appears to be part of ASYNC/AWAIT function in ./seeds/index.js
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
