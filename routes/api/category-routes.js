@@ -4,17 +4,24 @@ const { Category, Product } = require('../../models');
 // The `/api/categories` endpoint
 
 router.get('/', (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+  // DONE: find all categories
+  // DONE: be sure to include its associated Products
+  Category.findAll({order: [['category_name','ASC'],[Product,'product_name','ASC']], include:{all: true}}).then((categoryData) => {
+    res.json(categoryData);
+  });
 });
 
+// Get one category
 router.get('/:id', (req, res) => {
-  // find one category by its `id` value
-  // be sure to include its associated Products
+  // TODO: find one category by its `id` value
+  // TODO: be sure to include its associated Products
+  Category.findByPk(req.params.id, {include: {all: true}, order: [[Product,'product_name','ASC']]}).then((categoryData) => { 
+    res.json(categoryData);
+  })
 });
 
 router.post('/', (req, res) => {
-  // create a new category
+  // TODO: create a new category
 });
 
 router.put('/:id', (req, res) => {
@@ -22,7 +29,7 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
+  // TODO: delete a category by its `id` value
 });
 
 module.exports = router;
