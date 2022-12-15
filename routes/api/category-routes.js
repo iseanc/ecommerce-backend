@@ -13,15 +13,23 @@ router.get('/', (req, res) => {
 
 // Get one category
 router.get('/:id', (req, res) => {
-  // TODO: find one category by its `id` value
-  // TODO: be sure to include its associated Products
+  // DONE: find one category by its `id` value
+  // DONE: be sure to include its associated Products
   Category.findByPk(req.params.id, {include: {all: true}, order: [[Product,'product_name','ASC']]}).then((categoryData) => { 
     res.json(categoryData);
   })
 });
 
 router.post('/', (req, res) => {
-  // TODO: create a new category
+  // DONE: create a new category
+  // Only create a new category if it doesn't already exist
+  Category.findOrCreate({
+    where: {category_name: req.body.category_name}})
+    .then((newCategory) => {
+      res.json(newCategory);
+    }).catch((err) => {
+       res.json(err); 
+    });
 });
 
 router.put('/:id', (req, res) => {
