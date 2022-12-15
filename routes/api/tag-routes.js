@@ -20,8 +20,17 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  // TODO: create a new tag
-});
+  // DONE: create a new tag
+  // Only create new tag if it doesn't already exist
+  Tag.findOrCreate({tag_name: req.body.tag_name,
+    where: {tag_name: req.body.tag_name}})
+    .then((newTag) => {
+      res.json(newTag);
+    }).catch((err) => {
+       res.json(err); 
+    });
+  });
+
 
 router.put('/:id', (req, res) => {
   // TODO: update a tag's name by its `id` value

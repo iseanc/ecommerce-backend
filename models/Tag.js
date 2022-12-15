@@ -18,6 +18,18 @@ Tag.init(
     },
   },
   {
+    hooks: {
+      beforeCreate: async (newTagData) => {
+        // convert new tag_name to lowercase for NEW record
+        newTagData.tag_name = newTagData.tag_name.toLowerCase();
+        return newTagData;
+      },
+      beforeUpdate: async (updatedTagData) => {
+        // convert new tag_name to lowercase
+        updatedTagData.tag_name = updatedTagData.tag_name.toLowerCase();
+        return updatedTagData;
+      },
+    },
     sequelize,
     timestamps: false,
     freezeTableName: true,
