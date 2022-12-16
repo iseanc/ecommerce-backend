@@ -56,6 +56,10 @@ SO THAT my company can compete with other e-commerce companies
     - Categories and Tags may have their `category_name` and `tag_name` fields changed.
 - To delete a record, submit a DELETE request with the record ID in the URL path (/api/categories/1).
 
+**Demo Video**
+[![Demo video](/assets/images/ecommerce_db.png)](assets/images/ecommerce_db.mp4)
+
+
 ## License
 
 The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
