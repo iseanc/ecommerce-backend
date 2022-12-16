@@ -51,14 +51,14 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  // TODO: delete a category by its `id` value
+  // DONE: delete a category by its `id` value
   Category.destroy({
     where: {
       id: req.params.id,
     },
   })
     .then((deletedCategory) => {
-      res.json(deletedCategory);
+      res.json("Successfully deleted category!");
     })
     .catch((err) => res.json(err));
 });

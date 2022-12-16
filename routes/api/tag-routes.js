@@ -51,14 +51,14 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  // TODO: delete on tag by its `id` value
+  // DONE: delete on tag by its `id` value
   Tag.destroy({
     where: {
       id: req.params.id,
     },
   })
     .then((deletedTag) => {
-      res.json(deletedTag);
+      res.json("Successfully deleted tag!");
     })
     .catch((err) => res.json(err));
 });
