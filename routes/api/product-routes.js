@@ -61,14 +61,19 @@ router.post('/', (req, res) => {
 
 // update product
 router.put('/:id', (req, res) => {
-  // TODO: update product data
-  Product.update(req.body, {
+  // DONE: update product data
+  Product.update({
+      product_name: req.body.product_name,
+      price: req.body.price,
+      stock: req.body.stock,
+      category_id: req.body.category_id,
+  }, {
     where: {
       id: req.params.id,
     },
   })
     .then((product) => {
-      // TODO: find all associated tags from ProductTag
+      // find all associated tags from ProductTag
       return ProductTag.findAll({ where: { product_id: req.params.id } });
     })
     .then((productTags) => {
@@ -96,7 +101,7 @@ router.put('/:id', (req, res) => {
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      // console.log(err);
+      console.log(err);
       res.status(400).json(err);
     });
 });
